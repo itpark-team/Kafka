@@ -1,0 +1,13 @@
+docker exec broker \
+kafka-topics --bootstrap-server broker:9092 \
+             --list
+
+docker exec --interactive --tty broker \
+kafka-console-consumer --bootstrap-server broker:9092 \
+                       --topic pizza_tg_queue \
+                       --from-beginning
+
+docker exec broker \
+kafka-topics --bootstrap-server broker:9092 \
+             --create \
+             --topic pizza_tg_queue
